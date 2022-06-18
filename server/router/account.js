@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Consumer = require("../models/Consumer");
-const { generateId } = require("../utils/generateId");
+const { generateId } = require("../helpers/generateId");
 
 // Register
 router.post("/register", async (req, res) => {
@@ -82,7 +82,30 @@ router.post("/login", async (req, res) => {
       status: "ok",
       msg: "Successfully logged in!",
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+// check user logged in with jwt
+router.get("/loggedin", async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (!decoded) {
+      return res.json({
+        status: "bad",
+        msg: "You are not logged in!",
+      });
+    }
+
+    const consumer = await Consumer.findById(decoded.consumer._id);
+
+    res.json(consumer);
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
 module.exports = router;
