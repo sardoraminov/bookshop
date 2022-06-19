@@ -74,7 +74,7 @@ router.post("/login", async (req, res) => {
       process.env.JWT_SECRET
     );
 
-    req.user = existingConsumer;
+    req.consumer = existingConsumer;
 
     res.json({
       account: existingConsumer,
@@ -108,4 +108,7 @@ router.get("/loggedin", async (req, res) => {
   }
 });
 
+router.post("/admin", async (req, res) => {
+  
+})
 module.exports = router;

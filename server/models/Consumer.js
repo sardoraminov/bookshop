@@ -5,7 +5,7 @@ const consumerSchema = new Schema(
     username: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
@@ -24,6 +24,16 @@ const consumerSchema = new Schema(
     oneId: {
       type: String,
       required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+    },
+    bio: {
+      type: String,
     },
   },
   { timestamps: true }
