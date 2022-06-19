@@ -3,9 +3,14 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Consumer = require("../models/Consumer");
+const {
+  checkToken,
+  checkConsumer,
+  checkAdmin,
+} = require("../middlewares/checkToken");
 
 //  get consumer by id
-router.get("/:id", async (req, res) => {
+router.get("/:id", checkToken, async (req, res) => {
   try {
     const consumer = await Consumer.findById(req.params.id);
     res.json({
@@ -18,7 +23,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // get all consumers
-router.get("/", async (req, res) => {
+router.get("/", checkToken, async (req, res) => {
   try {
     const consumers = await Consumer.find();
     res.json({
@@ -31,15 +36,25 @@ router.get("/", async (req, res) => {
 });
 
 // update consumer
-router.put("/:id", async (req, res) => {
+router.put("/:id", checkToken, async (req, res) => {
   try {
-    const consumer = await Consumer.findByIdAndUpdate(
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decodedConsumer = decoded.consumer;
+    const consumer = await Consumer.findById(req.params.id);
+    if (consumer._id !== decodedConsumer._id) {
+      return res.json({
+        status: "bad",
+        msg: "You are not authorized to update this consumer!",
+      });
+    }
+    const changedConsumer = await Consumer.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true }
     );
     res.json({
-      consumer,
+      changedConsumer,
       status: "ok",
     });
   } catch (error) {
@@ -48,8 +63,20 @@ router.put("/:id", async (req, res) => {
 });
 
 // delete consumer
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", checkToken, async (req, res) => {
   try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decodedConsumer = decoded.consumer;
+    const consumer = await Consumer.findById(req.params.id);
+
+    if (consumer._id !== decodedConsumer._id) {
+      return res.json({
+        status: "bad",
+        msg: "You are not authorized to delete this consumer!",
+      });
+    }
+    
     await Consumer.findByIdAndDelete(req.params.id);
     res.json({
       status: "ok",
