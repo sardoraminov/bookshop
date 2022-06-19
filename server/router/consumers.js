@@ -3,11 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Consumer = require("../models/Consumer");
-const {
-  checkToken,
-  checkConsumer,
-  checkAdmin,
-} = require("../middlewares/checkToken");
+const { checkToken, checkAdmin } = require("../middlewares/checkToken");
 
 //  get consumer by id
 router.get("/:id", checkToken, async (req, res) => {
@@ -70,13 +66,13 @@ router.delete("/:id", checkToken, async (req, res) => {
     const decodedConsumer = decoded.consumer;
     const consumer = await Consumer.findById(req.params.id);
 
-    if (consumer._id !== decodedConsumer._id) {
+    if (consumer._id.toString() !== decodedConsumer._id) {
       return res.json({
         status: "bad",
         msg: "You are not authorized to delete this consumer!",
       });
     }
-    
+
     await Consumer.findByIdAndDelete(req.params.id);
     res.json({
       status: "ok",

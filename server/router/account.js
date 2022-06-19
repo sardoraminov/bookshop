@@ -8,7 +8,7 @@ const { generateId } = require("../helpers/generateId");
 // Register
 router.post("/register", async (req, res) => {
   try {
-    const { username, password, gender } = req.body;
+    const { username, password, gender, phone } = req.body;
     const existingConsumer = await Consumer.findOne({
       username: username.trim(),
     });
@@ -25,12 +25,23 @@ router.post("/register", async (req, res) => {
         status: "bad",
       });
 
+    if (username.trim() === "bookadmin") {
+      return res.json({
+        msg: "Username cannot be bookadmin!",
+        status: "bad",
+      });
+    }
+
     if (password.trim().length < 4)
       return res.json({
         msg: "Password must be at least 4 characters long!",
         status: "bad",
       });
 
+    if (!phone)
+      return res.json({ msg: "Phone number is required!", status: "bad" });
+    
+    if (!gender) return res.json({ msg: "Gender is required!", status: "bad" });
     const hashPass = await bcrypt.hash(password, 10);
 
     const newConsumer = new Consumer({
@@ -38,6 +49,7 @@ router.post("/register", async (req, res) => {
       password: hashPass,
       gender,
       oneId: generateId(username, ""),
+      phone,
     });
     const savedConsumer = await newConsumer.save();
 
@@ -109,6 +121,27 @@ router.get("/loggedin", async (req, res) => {
 });
 
 router.post("/admin", async (req, res) => {
-  
-})
+  try {
+    const { username, password } = req.body;
+    if (
+      username !== process.env.ADMIN_USERNAME ||
+      password !== process.env.ADMIN_PASSWORD
+    )
+      return res.json({
+        status: "bad",
+        msg: "Invalid username or password!",
+      });
+    const admin = { username, password };
+
+    const token = jwt.sign({ consumer: admin }, process.env.JWT_ADMIN);
+    res.json({
+      account: admin,
+      token,
+      status: "ok",
+      msg: "Successfully logged in as admin!",
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 module.exports = router;

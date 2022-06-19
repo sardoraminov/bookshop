@@ -35,6 +35,9 @@ const consumerSchema = new Schema(
     bio: {
       type: String,
     },
+    fullname: {
+      type: String,
+    }
   },
   { timestamps: true }
 );
