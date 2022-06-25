@@ -3,22 +3,22 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Consumer = require("../models/Consumer");
-const { generateId } = require("../helpers/generateId");
+const {  generateConsumerId } = require("../helpers/generateId");
 
 // Register
-router.post("/register", async (req, res) => {
+router.post("/register", async (req, res) => {  
   try {
     const { username, password, gender, phone } = req.body;
     const existingConsumer = await Consumer.findOne({
       username: username.trim(),
     });
 
-    if (existingConsumer)
+    if (existingConsumer) 
       return res.json({
         msg: "Username already exists. Please choose another one!",
-        status: "bad",
+        status: "bad", 
       });
-
+    
     if (username.trim().length < 4)
       return res.json({
         msg: "Username must be at least 4 characters long!",
@@ -48,7 +48,7 @@ router.post("/register", async (req, res) => {
       username: username.trim(),
       password: hashPass,
       gender,
-      oneId: generateId(username, ""),
+      oneId: generateConsumerId(),
       phone,
     });
     const savedConsumer = await newConsumer.save();

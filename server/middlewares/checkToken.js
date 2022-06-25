@@ -6,7 +6,7 @@ const checkToken = (req, res, next) => {
     return res.json({
       msg: "Token not found",
       fulllMsg: "You don't have permission to access this resource",
-      code: 401,
+      code: 403, // Forbidden
     });
   }
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -14,7 +14,7 @@ const checkToken = (req, res, next) => {
     return res.json({
       msg: "Unauthorized",
       fulllMsg: "You don't have permission to access this resource",
-      code: 403,
+      code: 401, // Unauthorized
     });
   }
 
@@ -52,7 +52,7 @@ const checkAdmin = (req, res, next) => {
   }
 
   req.admin = decoded.consumer;
-  next()
+  next();
 };
 
 module.exports = { checkToken, checkAdmin };
