@@ -1,9 +1,3 @@
-function generateId(first, second) {
-  let id = first + second + Math.random().toString(16).slice(8);
-
-  return id;
-}
-
 function generateConsumerId() {
   let id = Math.floor(Math.random() * (9000000 - 900000 + 1)) + 900000;
 
@@ -17,9 +11,9 @@ function generateBookId() {
 }
 
 function generateOrderId() {
-  let id = Math.floor(Math.random() + 900000)
+  let id = Math.floor(Math.random() * 900000)
 
   return `order${id}`
 }
 
-module.exports = { generateId, generateConsumerId, generateBookId, generateOrderId };
+module.exports = { generateConsumerId, generateBookId, generateOrderId };

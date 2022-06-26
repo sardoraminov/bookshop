@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Consumer = require("../models/Consumer");
-const { checkToken, checkAdmin } = require("../middlewares/checkToken");
+const { checkToken } = require("../middlewares/checkToken");
 
 //  get consumer by id
 router.get("/:id", checkToken, async (req, res) => {
@@ -38,7 +37,10 @@ router.put("/:id", checkToken, async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const decodedConsumer = decoded.consumer;
     const consumer = await Consumer.findById(req.params.id);
-    if (consumer._id !== decodedConsumer._id) {
+    if (
+      consumer._id.toString() !== decodedConsumer._id &&
+      decodedConsumer.username !== "bookadmin"
+    ) {
       return res.json({
         status: "bad",
         msg: "You are not authorized to update this consumer!",
@@ -50,7 +52,7 @@ router.put("/:id", checkToken, async (req, res) => {
       { new: true }
     );
     res.json({
-      changedConsumer,
+      consumer: changedConsumer,
       status: "ok",
     });
   } catch (error) {
@@ -65,8 +67,10 @@ router.delete("/:id", checkToken, async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const decodedConsumer = decoded.consumer;
     const consumer = await Consumer.findById(req.params.id);
-
-    if (consumer._id.toString() !== decodedConsumer._id) {
+    if (
+      consumer._id.toString() !== decodedConsumer._id &&
+      decodedConsumer.username !== "bookadmin"
+    ) {
       return res.json({
         status: "bad",
         msg: "You are not authorized to delete this consumer!",
