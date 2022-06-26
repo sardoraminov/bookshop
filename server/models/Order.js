@@ -14,9 +14,13 @@ const orderSchema = new Schema(
       type: String,
       required: true,
     },
-    consumerId: {
+    consumerPhone: {
       type: String,
       required: true,
+    },
+    consumerId: {
+      type: String,
+      required: true
     },
     amount: {
       type: Number,
@@ -29,6 +33,17 @@ const orderSchema = new Schema(
     status: {
       type: String,
       required: true,
+      /* 
+        1. WAITING
+        2. ONTHEWAY
+        3. DELIVERED
+
+        4. CANCELED
+      */
+    },
+    canceledReason: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }
