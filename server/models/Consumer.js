@@ -21,11 +21,11 @@ const consumerSchema = new Schema(
         default: [],
       },
     ],
-    oneId: {
+    phone: {
       type: String,
       required: true,
     },
-    phone: {
+    oneId: {
       type: String,
       required: true,
     },
