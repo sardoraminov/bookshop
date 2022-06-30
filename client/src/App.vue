@@ -1,11 +1,13 @@
 <script setup></script>
 
 <template>
-  <router-view v-slot="{ Component }">
-    <transition name="fade">
-      <component :is="Component" />
-    </transition>
-  </router-view>
+  <div class="parent sm:px-4 md:px-6 px-2">
+    <router-view v-slot="{ Component, route }" appear>
+      <transition :name="route.meta.transition || 'fade'" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </div>
 </template>
 
 <style>
