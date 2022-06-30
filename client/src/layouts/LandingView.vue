@@ -12,14 +12,14 @@
         <router-link
           data-replace="Kirish"
           to="/login"
-          class="nav-link transition-all overflow-hidden px-3 border-x-2 font-mont font-medium text-lg"
-          ><span class="relative p-2">Kirish</span></router-link
+          class="nav-link transition-all px-3 border-x-2 font-mont font-medium text-lg"
+          ><span class="relative p-2 px-3">Kirish</span></router-link
         >
         <router-link
           to="/register"
           data-replace="Ro'yxatdan o'tish"
-          class="nav-link transition-all overflow-hidden px-3 font-mont font-medium text-lg"
-          ><span class="relative p-2">Ro'yxatdan o'tish</span></router-link
+          class="nav-link transition-all px-3 font-mont font-medium text-lg"
+          ><span class="relative p-2 px-3">Ro'yxatdan o'tish</span></router-link
         >
       </div>
       <div class="nav-end pr-4 space-x-4 flex flex-row items-center">
@@ -93,14 +93,7 @@
     </nav>
     <router-view v-slot="{ Component, route }" appear>
       <transition :name="route.meta.transition || 'fade'" mode="out-in">
-        <keep-alive>
-          <suspense>
-            <template #default>
-              <component :is="Component" />
-            </template>
-            <template #fallback> Yuklanmoqda... </template>
-          </suspense>
-        </keep-alive>
+        <component :is="Component" />
       </transition>
     </router-view>
   </div>
@@ -119,7 +112,7 @@
   background: #f5cb5c;
   z-index: -1;
   transition: 0.4s ease;
-  border-radius: 15px;
+  border-radius: 99px;
 }
 
 .nav-link:hover span::after {
