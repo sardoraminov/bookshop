@@ -20,4 +20,8 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+html::-webkit-scrollbar {
+  display: none;
+}
 </style>

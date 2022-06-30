@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div class="landing">
     <nav
@@ -91,6 +89,111 @@
         </button>
       </div>
     </nav>
+    <nav class="responsive-nav flex flex-col justify-between border-b p-2 py-3">
+      <div class="nav-control flex flex-row justify-between items-center">
+        <router-link class="nav-logo pr-4" to="/">
+          <img src="../resources/icons/logo.svg" alt="logo" />
+        </router-link>
+        <button
+          @click="toggleNav()"
+          :class="['show-icon py-6 px-4 z-20 relative', showNav ? 'show' : '']"
+        >
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
+      </div>
+      <transition name="fade">
+        <div
+          v-show="showNav"
+          :class="[
+            'nav-items fixed left-0 top-0 right-0 bottom-0 h-screen transition-all bg-white z-10 py-3 pt-6 w-full',
+          ]"
+        >
+          <div class="nav-start flex flex-col items-start w-full">
+            <router-link
+              @click="toggleNavWithTimeout()"
+              data-replace="Kirish"
+              to="/login"
+              class="nav-link transition-all px-3 mb-6 font-mont font-medium text-lg"
+              ><span class="relative p-2 px-3">Kirish</span></router-link
+            >
+            <router-link
+              @click="toggleNavWithTimeout()"
+              to="/register"
+              data-replace="Ro'yxatdan o'tish"
+              class="nav-link transition-all px-3 font-mont font-medium text-lg"
+              ><span class="relative p-2 px-3"
+                >Ro'yxatdan o'tish</span
+              ></router-link
+            >
+          </div>
+          <div class="nav-down px-3 mt-14">
+            <h3 class="down-title text-lg font-mont font-bold">
+              Biz haqimizda
+            </h3>
+            <p class="font-manr mt-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
+              officia quod. Alias temporibus, consectetur praesentium nemo eius
+              ad amet asperiores!
+            </p>
+            <p class="font-manr mt-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
+              officia quod. Alias temporibus, consectetur praesentium nemo eius
+              ad amet asperiores!
+            </p>
+            <div class="links flex flex-col mt-4 font-manr">
+              <a
+                target="_blank"
+                class="flex flex-row items-center"
+                href="tel:+998999447613"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 26 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M2.43905 3.26992C3.90572 1.72492 4.42405 1.29159 5.04905 1.08992C5.48158 0.976582 5.93521 0.970289 6.37072 1.07159C6.94405 1.23825 7.09572 1.36492 8.97572 3.23825C10.6274 4.88325 10.7924 5.06159 10.9507 5.38325C11.2535 5.94788 11.3008 6.61489 11.0807 7.21659C10.9141 7.67492 10.6774 7.97825 9.67572 8.98325L9.02238 9.63825C8.85081 9.81261 8.81049 10.0774 8.92238 10.2949C10.3739 12.7713 12.4333 14.8365 14.9057 16.2949C15.1903 16.4473 15.5408 16.3981 15.7724 16.1733L16.4007 15.5549C16.7891 15.1568 17.2003 14.7818 17.6324 14.4316C18.311 14.0149 19.1565 13.9778 19.8691 14.3333C20.2174 14.4999 20.3324 14.6033 22.0357 16.3033C23.7924 18.0549 23.8424 18.1099 24.0357 18.5116C24.3995 19.1765 24.3957 19.9818 24.0257 20.6433C23.8374 21.0166 23.7224 21.1516 22.734 22.1616C22.1374 22.7716 21.5757 23.3283 21.4857 23.4099C20.6704 24.085 19.6243 24.4161 18.5691 24.3333C16.6383 24.1573 14.7695 23.5605 13.0941 22.5849C9.3826 20.6186 6.22305 17.7535 3.90405 14.2516C3.39896 13.5187 2.9499 12.7487 2.56072 11.9483C1.51669 10.1589 0.977548 8.11981 1.00072 6.04825C1.08042 4.96452 1.60014 3.96061 2.43905 3.26992Z"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span class="ml-2">+998 (99) 944 76-13</span></a
+              >
+              <a
+                target="_blank"
+                class="flex flex-row items-center mt-3"
+                href="tel:+998999447613"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 0.333344C9.44776 0.333332 9.00003 0.781037 9.00002 1.33332C9.00001 1.88561 9.44771 2.33333 10 2.33334L10 0.333344ZM13.1884 1.96001L13.5671 1.03452L13.5668 1.03439L13.1884 1.96001ZM16.9284 5.00001L16.0998 5.55989L16.1004 5.5608L16.9284 5.00001ZM18.3334 9.56668H19.3334L19.3334 9.56507L18.3334 9.56668ZM15.8917 15.3883L15.0845 14.798C15.0724 14.8147 15.0607 14.8317 15.0496 14.849L15.8917 15.3883ZM13.4717 19.1667L12.6296 18.6273L12.6261 18.6329L13.4717 19.1667ZM10 24.6667L9.1549 25.2013C9.33828 25.4912 9.65746 25.6668 10.0005 25.6667C10.3435 25.6665 10.6625 25.4905 10.8456 25.2004L10 24.6667ZM6.52835 19.1783L7.37348 18.6438L7.37087 18.6397L6.52835 19.1783ZM4.10835 15.3933L4.95087 14.8547C4.93981 14.8374 4.92822 14.8204 4.91612 14.8038L4.10835 15.3933ZM1.66669 9.57168L0.666687 9.57068V9.57168H1.66669ZM3.07169 5.00001L3.89965 5.5608L3.8997 5.56072L3.07169 5.00001ZM6.81169 1.96501L7.18991 2.89073L7.1916 2.89003L6.81169 1.96501ZM10.0015 2.33334C10.5538 2.33253 11.0008 1.88416 11 1.33187C10.9992 0.779587 10.5508 0.332531 9.99855 0.333345L10.0015 2.33334ZM10 11.3117C9.44774 11.3117 9.00002 11.7594 9.00002 12.3117C9.00002 12.864 9.44774 13.3117 10 13.3117V11.3117ZM10 5.82168C9.44774 5.82168 9.00002 6.26939 9.00002 6.82168C9.00002 7.37396 9.44774 7.82168 10 7.82168V5.82168ZM10.0247 13.3214C10.5768 13.3078 11.0133 12.8492 10.9997 12.297C10.9861 11.7449 10.5275 11.3084 9.97538 11.322L10.0247 13.3214ZM7.5665 10.9695L8.42839 10.4624L7.5665 10.9695ZM7.5665 8.18553L6.70461 7.67843L7.5665 8.18553ZM9.97538 7.83304C10.5275 7.84665 10.9861 7.4101 10.9997 6.85798C11.0133 6.30587 10.5768 5.84726 10.0247 5.83365L9.97538 7.83304ZM10 2.33334C10.9636 2.33336 11.918 2.52095 12.8099 2.88563L13.5668 1.03439C12.4346 0.57148 11.2232 0.33337 10 0.333344L10 2.33334ZM12.8096 2.8855C14.1463 3.43259 15.2911 4.36315 16.0998 5.55989L17.7569 4.44013C16.7272 2.91619 15.2693 1.7312 13.5671 1.03452L12.8096 2.8855ZM16.1004 5.5608C16.9017 6.74385 17.3311 8.13941 17.3334 9.56828L19.3334 9.56507C19.3304 7.73744 18.7812 5.95242 17.7563 4.43922L16.1004 5.5608ZM17.3334 9.56668C17.3334 10.5341 17.1829 11.2523 16.8534 11.9952C16.5091 12.7714 15.957 13.6051 15.0845 14.798L16.6989 15.9787C17.5731 14.7833 18.2418 13.7977 18.6816 12.8061C19.1363 11.7811 19.3334 10.7826 19.3334 9.56668H17.3334ZM15.0496 14.849L12.6296 18.6273L14.3138 19.706L16.7338 15.9277L15.0496 14.849ZM12.6261 18.6329L9.15439 24.1329L10.8456 25.2004L14.3173 19.7004L12.6261 18.6329ZM10.8451 24.1321L7.37347 18.6438L5.68324 19.7129L9.1549 25.2013L10.8451 24.1321ZM7.37087 18.6397L4.95087 14.8547L3.26584 15.932L5.68584 19.717L7.37087 18.6397ZM4.91612 14.8038C4.0432 13.6077 3.49097 12.7741 3.14653 11.9981C2.81708 11.2558 2.66669 10.539 2.66669 9.57168H0.666687C0.666687 10.7877 0.863796 11.785 1.31851 12.8095C1.75824 13.8001 2.42684 14.7856 3.30059 15.9829L4.91612 14.8038ZM2.66669 9.57267C2.66811 8.1423 3.09751 6.74508 3.89965 5.5608L2.24373 4.43922C1.21774 5.954 0.668505 7.74115 0.666687 9.57068L2.66669 9.57267ZM3.8997 5.56072C4.709 4.36561 5.85378 3.43663 7.18991 2.89073L6.43347 1.03929C4.73202 1.73446 3.27425 2.91743 2.24368 4.4393L3.8997 5.56072ZM7.1916 2.89003C8.08322 2.52384 9.03761 2.33476 10.0015 2.33334L9.99855 0.333345C8.77503 0.335146 7.56356 0.575159 6.43178 1.03999L7.1916 2.89003ZM10 13.3117C11.338 13.3117 12.5743 12.5979 13.2433 11.4392L11.5112 10.4392C11.1995 10.9791 10.6234 11.3117 10 11.3117V13.3117ZM13.2433 11.4392C13.9123 10.2805 13.9123 8.85288 13.2433 7.69418L11.5112 8.69418C11.8229 9.23408 11.8229 9.89927 11.5112 10.4392L13.2433 11.4392ZM13.2433 7.69418C12.5743 6.53547 11.338 5.82168 10 5.82168V7.82168C10.6234 7.82168 11.1995 8.15427 11.5112 8.69418L13.2433 7.69418ZM9.97538 11.322C9.34189 11.3376 8.74973 11.0086 8.42839 10.4624L6.70461 11.4766C7.39424 12.6487 8.66511 13.3549 10.0247 13.3214L9.97538 11.322ZM8.42839 10.4624C8.10705 9.91623 8.10705 9.23879 8.42839 8.69263L6.70461 7.67843C6.01498 8.85057 6.01498 10.3044 6.70461 11.4766L8.42839 10.4624ZM8.42839 8.69263C8.74973 8.14646 9.34189 7.81743 9.97538 7.83304L10.0247 5.83365C8.66511 5.80014 7.39424 6.5063 6.70461 7.67843L8.42839 8.69263Z"
+                    fill="black"
+                  />
+                </svg>
+                <span class="ml-2">Toshkent, Chilonzor 19</span></a
+              >
+            </div>
+          </div>
+          <div class="nav-footer text-center mt-14 font-mont">
+            made with 💛 by dasturchioka
+          </div>
+        </div>
+      </transition>
+    </nav>
     <router-view v-slot="{ Component, route }" appear>
       <transition :name="route.meta.transition || 'fade'" mode="out-in">
         <component :is="Component" />
@@ -99,7 +202,52 @@
   </div>
 </template>
 
+<script setup>
+import { ref } from "vue";
+let showNav = ref(false);
+const toggleNav = () => {
+  showNav.value = !showNav.value;
+};
+
+const toggleNavWithTimeout = () => {
+  setTimeout(() => {
+    showNav.value = !showNav.value;
+  }, 500);
+};
+</script>
+
 <style scoped>
+.show-icon {
+  margin-right: 15px;
+  transition: all 0.4s ease;
+}
+.show-icon .line {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  height: 2px;
+  background: #333533;
+  width: 100%;
+  transition: all 0.4s ease;
+}
+
+.show-icon .line:nth-child(1) {
+  transform: translateY(8px);
+}
+.show-icon .line:nth-child(3) {
+  transform: translateY(-8px);
+}
+
+.show-icon.show .line:nth-child(1) {
+  transform: rotate(45deg);
+}
+.show-icon.show .line:nth-child(3) {
+  transform: rotate(-45deg);
+}
+.show-icon.show .line:nth-child(2) {
+  opacity: 0;
+}
+
 .nav-link span::after {
   content: "";
   position: absolute;
@@ -118,6 +266,35 @@
 .nav-link:hover span::after {
   transform: scaleY(1);
   transform-origin: top;
+}
+
+.nav-link.router-link-active span::after {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.nav-link.router-link-active {
+  color: #fff;
+}
+
+@media (max-width: 614px) {
+  .landing-nav .nav-link {
+    font-size: 14px;
+    border: none;
+  }
+}
+
+.responsive-nav {
+  display: none;
+}
+
+@media (max-width: 508px) {
+  .landing-nav {
+    display: none;
+  }
+  .responsive-nav {
+    display: flex;
+  }
 }
 
 .nav-link:hover {
