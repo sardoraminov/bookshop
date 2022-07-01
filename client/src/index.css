@@ -6,3 +6,7 @@
 * * {
   -webkit-tap-highlight-color: transparent;
 }
+
+*::selection {
+  background: #f5cc5cb7;
+}

@@ -205,6 +205,7 @@
 <script setup>
 import { ref } from "vue";
 let showNav = ref(false);
+
 const toggleNav = () => {
   showNav.value = !showNav.value;
 };

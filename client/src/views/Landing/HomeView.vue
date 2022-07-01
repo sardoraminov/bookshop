@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from "vue-router";
-import TextView from "../../components/Landing/Header/TextView.vue";
+import TextView from "../../components/Landing/TextView.vue";
 const router = useRouter();
 
 const changeRoute = () => {

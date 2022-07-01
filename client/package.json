@@ -8,7 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "v-mask": "^2.3.0",
     "vue": "^3.2.25",
+    "vue-click-outside": "^1.1.0",
     "vue-router": "^4.0.16",
     "vuex": "^4.0.2"
   },

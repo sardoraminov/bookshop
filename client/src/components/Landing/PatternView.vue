@@ -1,0 +1,70 @@
+<template>
+  <svg
+    width="1440"
+    height="53"
+    viewBox="0 0 1440 53"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="137"
+      cy="200"
+      r="198"
+      fill="#F5CB5C"
+      stroke="#333533"
+      stroke-width="4"
+    />
+    <circle
+      cx="326"
+      cy="200"
+      r="198"
+      fill="#F5CB5C"
+      stroke="#333533"
+      stroke-width="4"
+    />
+    <circle
+      cx="520"
+      cy="200"
+      r="198"
+      fill="#F5CB5C"
+      stroke="#333533"
+      stroke-width="4"
+    />
+    <circle
+      cx="713"
+      cy="200"
+      r="198"
+      fill="#F5CB5C"
+      stroke="#333533"
+      stroke-width="4"
+    />
+    <circle
+      cx="920"
+      cy="200"
+      r="198"
+      fill="#F5CB5C"
+      stroke="#333533"
+      stroke-width="4"
+    />
+    <circle
+      cx="1120"
+      cy="200"
+      r="198"
+      fill="#F5CB5C"
+      stroke="#333533"
+      stroke-width="4"
+    />
+    <circle
+      cx="1302"
+      cy="200"
+      r="198"
+      fill="#F5CB5C"
+      stroke="#333533"
+      stroke-width="4"
+    />
+  </svg>
+</template>
+
+<script setup></script>
+
+<style></style>
