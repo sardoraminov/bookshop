@@ -2,6 +2,7 @@ import api from "../../helpers/api";
 import Cookies from "js-cookie";
 
 const authModule = {
+  namespaced: true,
   state: {
     account: {},
     token: "",
@@ -43,7 +44,6 @@ const authModule = {
           setTimeout(() => {
             window.location.href = "/explore";
           }, 1000);
-
         } else {
           return;
         }
@@ -56,3 +56,5 @@ const authModule = {
     },
   },
 };
+
+export default authModule;

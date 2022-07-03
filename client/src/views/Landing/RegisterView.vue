@@ -1,6 +1,10 @@
 <script setup>
+import { useStore } from "vuex";
 import { reactive, watch } from "vue";
 import PatternView from "../../components/Landing/PatternView.vue";
+
+const store = useStore()
+
 let consumer = reactive({
   username: "",
   phone: "+998",
@@ -8,12 +12,7 @@ let consumer = reactive({
   gender: "",
 });
 
-watch(
-  () => consumer.gender,
-  () => {
-    console.log(consumer.gender);
-  }
-);
+
 </script>
 
 <template>
