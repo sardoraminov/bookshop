@@ -1,7 +1,16 @@
-<script setup></script>
+<script setup>
+import ToastView from "./components/ToastView.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+import LoadingView from "./components/LoadingView.vue";
+
+const toastShow = computed(() => useStore().state.toast.show);
+</script>
 
 <template>
   <div class="parent sm:px-4 md:px-6 px-2">
+    <ToastView v-if="toastShow"/>
+    <LoadingView/>
     <router-view v-slot="{ Component, route }" appear>
       <transition :name="route.meta.transition || 'fade'" mode="out-in">
         <component :is="Component" />

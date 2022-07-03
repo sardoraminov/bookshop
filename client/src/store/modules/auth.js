@@ -1,4 +1,5 @@
 import api from "../../helpers/api";
+import Cookies from "js-cookie"
 
 const authModule = {
   state: {
@@ -23,6 +24,7 @@ const authModule = {
   },
   actions: {
     async register(context, payload) {
+      context.commit("setDisabledButton", true);
       const res = await api.post("/accounts/register", payload);
     },
   },

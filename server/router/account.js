@@ -3,45 +3,49 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Consumer = require("../models/Consumer");
-const {  generateConsumerId } = require("../helpers/generateId");
+const { generateConsumerId } = require("../helpers/generateId");
 
 // Register
-router.post("/register", async (req, res) => {  
+router.post("/register", async (req, res) => {
   try {
     const { username, password, gender, phone } = req.body;
     const existingConsumer = await Consumer.findOne({
       username: username.trim(),
     });
 
-    if (existingConsumer) 
+    if (existingConsumer)
       return res.json({
-        msg: "Username already exists. Please choose another one!",
-        status: "bad", 
+        msg: "Siz kiritgan username allaqachon tizimda mavjud. Iltimos, boshqa username tanlang!",
+        status: "bad",
       });
-    
+
     if (username.trim().length < 4)
       return res.json({
-        msg: "Username must be at least 4 characters long!",
+        msg: "Username kamida 4 ta belgidan iborat bo'lishi kerak. Bo'sh joylarsiz!",
         status: "bad",
       });
 
     if (username.trim() === "bookadmin") {
       return res.json({
-        msg: "Username cannot be bookadmin!",
+        msg: "bookadmin username bilan tizimdan ro'yxatdan o'tish imkonsiz. Iltimos, boshqa username tanlang!",
         status: "bad",
       });
     }
 
     if (password.trim().length < 4)
       return res.json({
-        msg: "Password must be at least 4 characters long!",
+        msg: "Parol kamida 4 ta belgidan iborat bo'lishi lozim",
         status: "bad",
       });
 
     if (!phone)
-      return res.json({ msg: "Phone number is required!", status: "bad" });
-    
-    if (!gender) return res.json({ msg: "Gender is required!", status: "bad" });
+      return res.json({
+        msg: "Telefon raqami kiritilishi zarur!",
+        status: "bad",
+      });
+
+    if (!gender)
+      return res.json({ msg: "Jins kiritilishi zarur!", status: "bad" });
     const hashPass = await bcrypt.hash(password, 10);
 
     const newConsumer = new Consumer({
@@ -59,7 +63,7 @@ router.post("/register", async (req, res) => {
       account: savedConsumer,
       token,
       status: "ok",
-      msg: "Successfully registered!",
+      msg: "Tabriklaymiz, tizimdan muvafaqqiyatli ro'yxatdan o'tdingiz!",
     });
   } catch (error) {
     console.log(error.message);

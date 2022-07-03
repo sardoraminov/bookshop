@@ -1,7 +1,16 @@
 <script setup>
+import { computed } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import TextView from "../../components/Landing/TextView.vue";
+import ToastView from "../../components/ToastView.vue";
 const router = useRouter();
+const store = useStore();
+
+const setToastShow = () => {
+  store.commit("setToastMsg", "Ro'yxatdan o'tishda xatolik yuz berdi");
+  store.commit("setToastShow", true);
+};
 
 const changeRoute = () => {
   setTimeout(() => {
@@ -13,7 +22,9 @@ const changeRoute = () => {
 <template>
   <header class="landing-header flex flex-row">
     <div class="header-left flex flex-col justify-around w-[80%]">
-      <div class="freespace"></div>
+      <div class="freespace">
+        <button @click="setToastShow()">set</button>
+      </div>
       <div class="text-view">
         <TextView />
         <button @click="changeRoute()" class="nav-link mt-4">
