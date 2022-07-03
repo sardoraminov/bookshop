@@ -51,7 +51,7 @@ const authModule = {
         context.commit("setLoading", false, { root: true });
         context.commit("setDisabledButton", false, { root: true });
         context.commit("setToastShow", true, { root: true });
-        context.commit("setToastMsg", res.data.msg, { root: true });
+        context.commit("setToastMsg", error.message, { root: true });
       }
     },
   },

@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 import { reactive, watch } from "vue";
 import PatternView from "../../components/Landing/PatternView.vue";
 
-const store = useStore()
+const store = useStore();
 
 let consumer = reactive({
   username: "",
@@ -12,7 +12,11 @@ let consumer = reactive({
   gender: "",
 });
 
-
+const register = async () => {
+  store.dispatch("auth/register", consumer).then(() => {
+    console.log("dispatch called");
+  });
+};
 </script>
 
 <template>
@@ -141,6 +145,7 @@ let consumer = reactive({
             </div>
           </div>
           <button
+            @click="register()"
             class="send-btn transition-all mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg"
             type="button"
           >
@@ -201,7 +206,7 @@ let consumer = reactive({
 
   .radios .dot {
     left: 6px;
-  } 
+  }
 
   .radios .radio {
     margin-bottom: 8px;
