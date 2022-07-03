@@ -1,13 +1,24 @@
 <script setup>
 import PatternView from "../../components/Landing/PatternView.vue";
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+const disabledButton = computed(() => {
+  return store.state.button.disabled;
+});
 
 let consumer = reactive({
   username: "",
-  phone: "+998",
   password: "",
-  gender: "",
 });
+
+const login = async () => {
+  store.dispatch("auth/login", consumer).then(() => {
+    console.log("auth/login called");
+  });
+};
 </script>
 
 <template>
@@ -47,7 +58,9 @@ let consumer = reactive({
           </div>
 
           <button
-            class="send-btn transition-all mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg"
+            @click="login()"
+            :disabled="disabledButton"
+            class="send-btn transition-all mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg disabled:bg-gray disabled:cursor-default"
             type="button"
           >
             KIRISH

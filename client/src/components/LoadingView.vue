@@ -18,7 +18,7 @@ export default {};
 }
 .dot-bricks {
   position: fixed;
-  bottom: 20px;
+  bottom: 50px;
   left: -9999px;
   width: 10px;
   height: 10px;
@@ -29,6 +29,7 @@ export default {};
   box-shadow: 9991px -16px 0 0 #f6aa1c, 9991px 0 0 0 #f6aa1c,
     10007px 0 0 0 #f6aa1c;
   animation: dotBricks 2s infinite ease;
+  z-index: 999999999999999999999;
 }
 
 @keyframes fade {

@@ -96,7 +96,7 @@ router.post("/login", async (req, res) => {
       account: existingConsumer,
       token,
       status: "ok",
-      msg: "Successfully logged in!",
+      msg: "Tizimga muvafaqqiyatli kirdingiz!",
     });
   } catch (error) {
     console.log(error.message);

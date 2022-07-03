@@ -1,6 +1,6 @@
 <script setup>
 import { useStore } from "vuex";
-import { reactive, watch } from "vue";
+import { reactive, computed } from "vue";
 import PatternView from "../../components/Landing/PatternView.vue";
 
 const store = useStore();
@@ -12,9 +12,13 @@ let consumer = reactive({
   gender: "",
 });
 
+const disabledButton = computed(() => {
+  return store.state.button.disabled;
+});
+
 const register = async () => {
   store.dispatch("auth/register", consumer).then(() => {
-    console.log("dispatch called");
+    console.log("auth/register called");
   });
 };
 </script>
@@ -145,6 +149,7 @@ const register = async () => {
             </div>
           </div>
           <button
+            :disabled="disabledButton"
             @click="register()"
             class="send-btn transition-all mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg"
             type="button"
