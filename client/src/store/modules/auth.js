@@ -43,7 +43,7 @@ const authModule = {
           setTimeout(() => {
             window.location.href = "/explore";
           }, 1000);
-          
+
         } else {
           return;
         }
