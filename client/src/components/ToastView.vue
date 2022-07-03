@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="toastOptions.show"
-    class="toast-notification fixed top-6 left-2/4 bg-white border-2 border-dark-primary font-manr p-2 text-lg font-medium shadow-lg rounded"
+    class="toast-notification bg-white inline w-auto border-2 border-dark-primary font-manr p-2 text-lg font-medium shadow-lg rounded"
   >
     {{ toastOptions.msg }}
   </div>
@@ -19,6 +19,8 @@ const toastOptions = computed(() => {
 
 <style scoped>
 .toast-notification {
+  position: fixed;
+  top: 20px;
   animation: fade-up 0.4s ease forwards;
   z-index: 999999999999999999999999;
 }
@@ -29,7 +31,7 @@ const toastOptions = computed(() => {
     top: 10px;
     left: 10px;
     right: 10px;
-  } 
+  }
 }
 
 @keyframes fade-up {

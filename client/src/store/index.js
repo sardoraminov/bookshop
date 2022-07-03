@@ -9,6 +9,7 @@ const store = createStore({
     button: {
       disabled: false,
     },
+    loading: false,
   },
   mutations: {
     setToastShow(state, payload) {
@@ -28,6 +29,9 @@ const store = createStore({
     setDisabledButton(state, payload) {
       state.button.disabled = payload;
     },
+    setLoading(state, payload) {
+      state.loading = payload;
+    },
   },
   getters: {
     getToastShow(state) {
@@ -38,6 +42,9 @@ const store = createStore({
     },
     getDisabledButton(state) {
       return state.button.disabled;
+    },
+    getLoading(state) {
+      return state.loading;
     },
   },
   actions: {},
