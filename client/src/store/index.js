@@ -10,7 +10,7 @@ const store = createStore({
     button: {
       disabled: false,
     },
-    loading: true,
+    loading: false,
   },
   mutations: {
     setToastShow(state, payload) {
