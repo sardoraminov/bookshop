@@ -1,9 +1,17 @@
 <template>
-  <div class="loading-spinner">
-    <div class="snippet" data-title=".dot-bricks">
-      <div class="stage">
-        <div class="dot-bricks"></div>
-      </div>
+  <div
+    class="loading-spinner border rounded shadow-lg absolute top-[86px] sm:left-4 md:left-6 left-2 bg-white"
+  >
+    <div class="container w-10 h-10">
+      <div
+        class="dot-bricks w-[8.5px] h-[8.5px] bg-yellow-darken rounded-full div1"
+      ></div>
+      <div
+        class="dot-bricks w-[8.5px] h-[8.5px] bg-yellow-darken rounded-full div2"
+      ></div>
+      <div
+        class="dot-bricks w-[8.5px] h-[8.5px] bg-yellow-darken rounded-full div3"
+      ></div>
     </div>
   </div>
 </template>
@@ -16,84 +24,90 @@ export default {};
 .loading-spinner {
   animation: fade 0.6s ease;
 }
-.dot-bricks {
-  position: fixed;
-  bottom: 50px;
-  left: -9999px;
-  width: 10px;
-  height: 10px;
-  transform: translateX(200%);
-  border-radius: 5px;
-  background-color: #f6aa1c;
-  color: #f6aa1c;
-  box-shadow: 9991px -16px 0 0 #f6aa1c, 9991px 0 0 0 #f6aa1c,
-    10007px 0 0 0 #f6aa1c;
-  animation: dotBricks 2s infinite ease;
-  z-index: 999999999999999999999;
+
+.dot-bricks:nth-child(1) {
+  animation: transformation1 2s linear both;
+  animation-iteration-count: infinite;
 }
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+.dot-bricks:nth-child(2) {
+  animation: transformation2 2s linear both;
+  animation-iteration-count: infinite;
 }
 
-@keyframes dotBricks {
+.dot-bricks:nth-child(3) {
+  animation: transformation3 2s linear both;
+  animation-iteration-count: infinite;
+}
+
+@keyframes transformation1 {
   0% {
-    box-shadow: 9991px -16px 0 0 #f6aa1c, 9991px 0 0 0 #f6aa1c,
-      10007px 0 0 0 #f6aa1c;
-  }
-  8.333% {
-    box-shadow: 10007px -16px 0 0 #f6aa1c, 9991px 0 0 0 #f6aa1c,
-      10007px 0 0 0 #f6aa1c;
-  }
-  16.667% {
-    box-shadow: 10007px -16px 0 0 #f6aa1c, 9991px -16px 0 0 #f6aa1c,
-      10007px 0 0 0 #f6aa1c;
+    transform: translate(0, 0);
   }
   25% {
-    box-shadow: 10007px -16px 0 0 #f6aa1c, 9991px -16px 0 0 #f6aa1c,
-      9991px 0 0 0 #f6aa1c;
-  }
-  33.333% {
-    box-shadow: 10007px 0 0 0 #f6aa1c, 9991px -16px 0 0 #f6aa1c,
-      9991px 0 0 0 #f6aa1c;
-  }
-  41.667% {
-    box-shadow: 10007px 0 0 0 #f6aa1c, 10007px -16px 0 0 #f6aa1c,
-      9991px 0 0 0 #f6aa1c;
+    transform: translate(20px, 0);
   }
   50% {
-    box-shadow: 10007px 0 0 0 #f6aa1c, 10007px -16px 0 0 #f6aa1c,
-      9991px -16px 0 0 #f6aa1c;
-  }
-  58.333% {
-    box-shadow: 9991px 0 0 0 #f6aa1c, 10007px -16px 0 0 #f6aa1c,
-      9991px -16px 0 0 #f6aa1c;
-  }
-  66.666% {
-    box-shadow: 9991px 0 0 0 #f6aa1c, 10007px 0 0 0 #f6aa1c,
-      9991px -16px 0 0 #f6aa1c;
+    transform: translate(20px, 20px);
   }
   75% {
-    box-shadow: 9991px 0 0 0 #f6aa1c, 10007px 0 0 0 #f6aa1c,
-      10007px -16px 0 0 #f6aa1c;
-  }
-  83.333% {
-    box-shadow: 9991px -16px 0 0 #f6aa1c, 10007px 0 0 0 #f6aa1c,
-      10007px -16px 0 0 #f6aa1c;
-  }
-  91.667% {
-    box-shadow: 9991px -16px 0 0 #f6aa1c, 9991px 0 0 0 #f6aa1c,
-      10007px -16px 0 0 #f6aa1c;
+    transform: translate(0, 20px);
   }
   100% {
-    box-shadow: 9991px -16px 0 0 #f6aa1c, 9991px 0 0 0 #f6aa1c,
-      10007px 0 0 0 #f6aa1c;
+    transform: translate(0, 0);
   }
+}
+@keyframes transformation2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, 20px);
+  }
+  50% {
+    transform: translate(-20px, 20px);
+  }
+  75% {
+    transform: translate(-20px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes transformation3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, -20px);
+  }
+  50% {
+    transform: translate(20px, -20px);
+  }
+  75% {
+    transform: translate(20px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  place-items: center;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.div3 {
+  grid-area: 2 / 1 / 3 / 2;
 }
 </style>

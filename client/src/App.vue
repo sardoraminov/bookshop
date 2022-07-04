@@ -9,7 +9,7 @@ const loading = computed(() => useStore().state.loading);
 </script>
 
 <template>
-  <div class="parent sm:px-4 md:px-6 px-2">
+  <div class="parent sm:px-4 md:px-6 px-2 relative">
     <ToastView v-if="toastShow"/>
     <LoadingView v-if="loading"/>
     <router-view v-slot="{ Component, route }" appear>
