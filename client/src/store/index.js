@@ -54,4 +54,6 @@ const store = createStore({
   },
 });
 
+// https://i.pravatar.cc/300
+
 export default store;

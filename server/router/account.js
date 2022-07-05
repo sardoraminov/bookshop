@@ -24,6 +24,12 @@ router.post("/register", async (req, res) => {
         msg: "Username kamida 4 ta belgidan iborat bo'lishi kerak. Bo'sh joylarsiz!",
         status: "bad",
       });
+    
+    if (username.trim().length > 12)
+      return res.json({
+        msg: "Username 12 ta ta belgidan oshmasligi kerak. Bo'sh joylarsiz!",
+        status: "bad",
+      });
 
     if (username.trim() === "bookadmin") {
       return res.json({
