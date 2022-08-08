@@ -1,7 +1,7 @@
 # bookshop
 Server URL - https://demo-server-auth.herokuapp.com/
 
-# Registratsiya
+# Registratsiya (POST Method)
 Endpoint - https://demo-server-auth.herokuapp.com/api/v1/accounts/register
 
 Serverga so'rov yuborganda: 
@@ -10,7 +10,7 @@ Serverga so'rov yuborganda:
 ``
 shu ko'rinishdagi data jo'natilishi kerak.
 
-# Login
+# Login (POST Method)
 Endpoint - https://demo-server-auth.herokuapp.com/api/v1/accounts/login
 
 Serverga so'rov yuborganda: 
