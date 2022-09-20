@@ -20,6 +20,7 @@ module.exports = {
         mont: ["Montserrat", "sans-serif"],
         exo: ["Exo 2", "sans-serif"],
         manr: ["Manrope", "sans-serif"],
+        space: ["Space Grotesk", "sans-serif"],
       },
     },
   },

@@ -17,6 +17,7 @@ const disabledButton = computed(() => {
 });
 
 const register = async () => {
+  store.dispatch("playSong");
   store.dispatch("auth/register", consumer).then(() => {
     console.log("auth/register called");
   });
@@ -151,7 +152,7 @@ const register = async () => {
           <button
             :disabled="disabledButton"
             @click="register()"
-            class="send-btn transition-all mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg"
+            class="send-btn transition-all disabled:bg-gray-500 disabled:cursor-default mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg"
             type="submit"
           >
             Jo'natish

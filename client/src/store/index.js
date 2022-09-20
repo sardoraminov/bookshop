@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import authModule from "./modules/auth";
+import clickSound from "../resources/sounds/click.mp3";
+import Cookies from "js-cookie";
 
 const store = createStore({
   state: {
@@ -11,7 +13,7 @@ const store = createStore({
       disabled: false,
     },
     loading: false,
-    menuVisible: false
+    menuVisible: false,
   },
   mutations: {
     setToastShow(state, payload) {
@@ -35,8 +37,8 @@ const store = createStore({
       state.loading = payload;
     },
     setMenuVisible(state, payload) {
-      state.menuVisible = payload
-    }
+      state.menuVisible = payload;
+    },
   },
   getters: {
     getToastShow(state) {
@@ -52,10 +54,14 @@ const store = createStore({
       return state.loading;
     },
     getMenuVisible(state) {
-      return state.menuVisible
-    }
+      return state.menuVisible;
+    },
   },
-  actions: {},
+  actions: {
+    playSong() {
+      new Audio(clickSound).play()
+    },
+  },
   modules: {
     auth: authModule,
   },

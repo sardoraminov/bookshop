@@ -1,11 +1,16 @@
 <script setup>
 import ToastView from "./components/ToastView.vue";
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import LoadingView from "./components/LoadingView.vue";
 
-const toastShow = computed(() => useStore().state.toast.show);
-const loading = computed(() => useStore().state.loading);
+const store = useStore()
+
+
+const toastShow = computed(() => store.state.toast.show);
+const loading = computed(() => store.state.loading);
+
+
 </script>
 
 <template>

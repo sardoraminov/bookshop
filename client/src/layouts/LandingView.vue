@@ -4,16 +4,22 @@
       class="landing-nav flex flex-row justify-between items-center border-b p-2 py-3"
     >
       <div class="nav-start flex flex-row items-center">
-        <router-link class="nav-logo pr-4" to="/">
+        <router-link
+          @click="$store.dispatch('playSong')"
+          class="nav-logo pr-4"
+          to="/"
+        >
           <img src="../resources/icons/logo.svg" alt="logo" />
         </router-link>
         <router-link
+          @click="$store.dispatch('playSong')"
           data-replace="Kirish"
           to="/login"
           class="nav-link transition-all px-3 border-x-2 font-mont font-medium text-lg"
           ><span class="relative p-2 px-3">Kirish</span></router-link
         >
         <router-link
+          @click="$store.dispatch('playSong')"
           to="/register"
           data-replace="Ro'yxatdan o'tish"
           class="nav-link transition-all px-3 font-mont font-medium text-lg"
@@ -204,16 +210,21 @@
 
 <script setup>
 import { ref } from "vue";
+import { useStore } from "vuex";
 let showNav = ref(false);
+
+const store = useStore();
 
 const toggleNav = () => {
   showNav.value = !showNav.value;
+  store.dispatch("playSong");
 };
 
 const toggleNavWithTimeout = () => {
   setTimeout(() => {
     showNav.value = !showNav.value;
   }, 500);
+  store.dispatch("playSong");
 };
 </script>
 

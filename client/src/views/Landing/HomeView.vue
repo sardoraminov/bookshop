@@ -1,20 +1,26 @@
 <script setup>
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import TextView from "../../components/Landing/TextView.vue";
+
 const router = useRouter();
+const store = useStore();
 
 const changeRoute = () => {
   setTimeout(() => {
     router.push("/register");
   }, 400);
+
+  store.dispatch("playSong").then(() => {
+    return;
+  });
 };
 </script>
 
 <template>
   <header class="landing-header flex flex-row">
     <div class="header-left flex flex-col justify-around w-[80%]">
-      <div class="freespace">
-      </div>
+      <div class="freespace"></div>
       <div class="text-view">
         <TextView />
         <button @click="changeRoute()" class="nav-link mt-4">

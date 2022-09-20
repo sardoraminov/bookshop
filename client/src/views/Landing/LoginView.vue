@@ -15,6 +15,7 @@ let consumer = reactive({
 });
 
 const login = async () => {
+  store.dispatch('playSong')
   store.dispatch("auth/login", consumer).then(() => {
     console.log("auth/login called");
   });
@@ -60,7 +61,7 @@ const login = async () => {
           <button
             @click="login()"
             :disabled="disabledButton"
-            class="send-btn transition-all mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg disabled:bg-gray disabled:cursor-default"
+            class="send-btn disabled:bg-gray-500 transition-all mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg disabled:bg-gray disabled:cursor-default"
             type="submit"
           >
             KIRISH
