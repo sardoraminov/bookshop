@@ -32,7 +32,7 @@ const register = async () => {
         <h1 class="box-title font-extrabold text-xl ml-4 font-exo">
           Ro'yxatdan o'tish <span class="text-yellow">.</span>
         </h1>
-        <div class="box-form mt-8 flex flex-col">
+        <form @submit.prevent="register" class="box-form mt-8 flex flex-col">
           <div class="form-group flex flex-col mb-4">
             <label for="username" class="font-mont text-base font-medium"
               >Username <span class="text-yellow">*</span></label
@@ -152,11 +152,11 @@ const register = async () => {
             :disabled="disabledButton"
             @click="register()"
             class="send-btn transition-all mt-2 w-full p-3 text-white bg-yellow uppercase font-mont font-bold text-lg"
-            type="button"
+            type="submit"
           >
             Jo'natish
           </button>
-        </div>
+        </form>
       </div>
       <footer class="author font-exo font-medium mt-10 text-center">
         made with 💛 by dasturchioka

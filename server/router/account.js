@@ -118,12 +118,17 @@ router.get("/loggedin", async (req, res) => {
     if (!decoded) {
       return res.json({
         status: "bad",
-        msg: "You are not logged in!",
+        msg: "Tizimda ro'yxatdan o'tmagansiz!",
       });
     }
 
     const consumer = await Consumer.findById(decoded.consumer._id);
-
+    if (!consumer) {
+      return res.json({
+        status: 'bad',
+        msg: 'Sizning accountingiz tizimda topilmadi'
+      })
+    }
     res.json(consumer);
   } catch (error) {
     console.log(error.message);
