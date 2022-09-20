@@ -11,6 +11,7 @@ const store = createStore({
       disabled: false,
     },
     loading: false,
+    menuVisible: false
   },
   mutations: {
     setToastShow(state, payload) {
@@ -33,6 +34,9 @@ const store = createStore({
     setLoading(state, payload) {
       state.loading = payload;
     },
+    setMenuVisible(state, payload) {
+      state.menuVisible = payload
+    }
   },
   getters: {
     getToastShow(state) {
@@ -47,6 +51,9 @@ const store = createStore({
     getLoading(state) {
       return state.loading;
     },
+    getMenuVisible(state) {
+      return state.menuVisible
+    }
   },
   actions: {},
   modules: {

@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
         status: "bad",
       });
     
-    if (username.trim().length > 12)
+    if (username.trim().length > 22)
       return res.json({
         msg: "Username 12 ta ta belgidan oshmasligi kerak. Bo'sh joylarsiz!",
         status: "bad",
@@ -129,7 +129,10 @@ router.get("/loggedin", async (req, res) => {
         msg: 'Sizning accountingiz tizimda topilmadi'
       })
     }
-    res.json(consumer);
+    res.json({
+      status: 'ok',
+      consumer
+    });
   } catch (error) {
     console.log(error.message);
   }
