@@ -10,6 +10,7 @@ import Landing from "../layouts/LandingView.vue";
 import Home from "../views/Landing/HomeView.vue";
 import Register from "../views/Landing/RegisterView.vue";
 import Login from "../views/Landing/LoginView.vue";
+import ExploreHome from "../views/Explore/HomeView.vue";
 import Profile from "../views/Explore/ProfileView.vue"
 
 
@@ -43,8 +44,6 @@ const routes = [
       } else {
         next();
       }
-
-      
     },
   },
   {
@@ -52,6 +51,11 @@ const routes = [
     name: "Explore",
     component: Explore,
     children: [
+      {
+        path: '',
+        name: "ExploreHome",
+        component: ExploreHome
+      },
       {
         path: 'profile',
         name: "Profile",
