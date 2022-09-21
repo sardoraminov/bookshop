@@ -1,5 +1,7 @@
 import Cookies from "js-cookie";
 
+import store from "../store";
+
 import { createRouter, createWebHistory } from "vue-router";
 import Explore from "../layouts/ExploreView.vue";
 import Landing from "../layouts/LandingView.vue";
@@ -8,6 +10,8 @@ import Landing from "../layouts/LandingView.vue";
 import Home from "../views/Landing/HomeView.vue";
 import Register from "../views/Landing/RegisterView.vue";
 import Login from "../views/Landing/LoginView.vue";
+import Profile from "../views/Explore/ProfileView.vue"
+
 
 const routes = [
   {
@@ -39,19 +43,28 @@ const routes = [
       } else {
         next();
       }
+
+      
     },
   },
   {
     path: "/explore",
     name: "Explore",
     component: Explore,
+    children: [
+      {
+        path: 'profile',
+        name: "Profile",
+        component: Profile
+      }
+    ],
     beforeEnter: (to, from, next) => {
       const token = Cookies.get("token");
 
       if (token) {
         next();
       } else {
-        router.push("/");
+        router.push('/');
       }
     },
   },
@@ -61,5 +74,11 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  store.commit('setMenuVisible', false)
+
+  next()
+})
 
 export default router;

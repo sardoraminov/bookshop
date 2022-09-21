@@ -17,33 +17,72 @@ let menuVisible = computed(() => {
 
 <template>
   <div
-    class="menu flex items-start bg-black bg-opacity-30 h-screen max-h-screen fixed top-0 left-0 w-full"
+    v-show="menuVisible"
+    @click.self="$store.commit('setMenuVisible', false)"
+    class="menu flex items-start h-screen max-h-screen fixed top-0 left-0 w-full"
   >
     <aside
-      class="menu-component p-4 h-screen w-auto max-h-screen overflow-y-scroll bg-white text-dark-primary"
+      class="menu-component border-r-2 p-4 h-screen w-auto max-h-screen overflow-y-scroll bg-white text-dark-primary"
     >
-      <h1 class="comp-title font-space text-2xl font-extrabold">
+      <router-link @click="$store.dispatch('playSong')" to="/explore" class="comp-title font-space text-3xl font-extrabold">
         Menu <span class="mark text-yellow">.</span>
-      </h1>
-      <div class="comp-parts">
-        <nav class="part-links font-manr">
-          <router-link
-            @click="clickSound()"
-            to="#"
-            class="bg-gray-200 py-2 px-3 rounded-md flex flex-row items-center transition hover:bg-yellow hover:text-white"
-          >
-            <ion-icon name="person-outline"></ion-icon>
-            <p class="ml-2 font-bold">Kabinet</p>
-          </router-link>
+      </router-link>
+      <div class="comp-parts space-y-4">
+        <nav class="part-links mt-3 font-manr">
+          <h3 class="title font-bold text-lg">Shaxsiy</h3>
+          <div class="links flex flex-wrap gap-2">
+            <router-link
+              @click="clickSound()"
+              to="/explore/profile"
+              class="bg-gray-100 py-2 px-3 rounded-md flex flex-row items-center transition hover:bg-yellow hover:text-white"
+            >
+              <ion-icon name="person-outline"></ion-icon>
+              <p class="ml-2 font-bold">Kabinet</p>
+            </router-link>
+            <router-link
+              @click="clickSound()"
+              to="#"
+              class="bg-gray-100 py-2 px-3 rounded-md flex flex-row items-center transition hover:bg-yellow hover:text-white"
+            >
+              <ion-icon name="cart-outline"></ion-icon>
+              <p class="ml-2 font-bold">Savatcha</p>
+            </router-link>
+            <router-link
+              @click="clickSound()"
+              to="#"
+              class="bg-gray-100 py-2 px-3 rounded-md flex flex-row items-center transition hover:bg-yellow hover:text-white"
+            >
+              <ion-icon name="heart-outline"></ion-icon>
+              <p class="ml-2 font-bold">Sevimlilar</p>
+            </router-link>
+          </div>
         </nav>
       </div>
     </aside>
-    <button>&times;</button>
+    <button
+      @click="
+        () => {
+          $store.commit('setMenuVisible', false);
+          $store.dispatch('playSong');
+        }
+      "
+      class="text-3xl font-bold text-black ml-2"
+    >
+      &times;
+    </button>
   </div>
 </template>
 
 <style scoped>
+.menu-component {
+  box-shadow: 11px 0px 92px -3px #d6d5d5bf;
+}
 .menu-component::-webkit-scrollbar {
   display: none;
+}
+
+ion-icon {
+  font-size: 18px;
+  stroke-width: 40px;
 }
 </style>
