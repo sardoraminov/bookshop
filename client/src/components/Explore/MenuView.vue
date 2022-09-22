@@ -74,8 +74,12 @@ let menuVisible = computed(() => {
 </template>
 
 <style scoped>
+  .menu {
+    z-index: 999999999999999;
+  }
 .menu-component {
   box-shadow: 11px 0px 92px -3px #d6d5d5bf;
+  z-index: 999999999999999 !important;
 }
 .menu-component::-webkit-scrollbar {
   display: none;
