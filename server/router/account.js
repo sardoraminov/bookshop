@@ -24,16 +24,16 @@ router.post("/register", async (req, res) => {
         msg: "Username kamida 4 ta belgidan iborat bo'lishi kerak. Bo'sh joylarsiz!",
         status: "bad",
       });
-    
+
     if (username.trim().length > 22)
       return res.json({
         msg: "Username 12 ta ta belgidan oshmasligi kerak. Bo'sh joylarsiz!",
         status: "bad",
       });
 
-    if (username.trim() === "bookadmin") {
+    if (username.trim() === process.env.ADMIN_USERNAME) {
       return res.json({
-        msg: "bookadmin username bilan tizimdan ro'yxatdan o'tish imkonsiz. Iltimos, boshqa username tanlang!",
+        msg: `${process.env.ADMIN_USERNAME}  username bilan tizimdan ro'yxatdan o'tish imkonsiz. Iltimos, boshqa username tanlang!`,
         status: "bad",
       });
     }
@@ -125,13 +125,13 @@ router.get("/loggedin", async (req, res) => {
     const consumer = await Consumer.findById(decoded.consumer._id);
     if (!consumer) {
       return res.json({
-        status: 'bad',
-        msg: 'Sizning accountingiz tizimda topilmadi'
-      })
+        status: "bad",
+        msg: "Sizning accountingiz tizimda topilmadi",
+      });
     }
     res.json({
-      status: 'ok',
-      consumer
+      status: "ok",
+      consumer,
     });
   } catch (error) {
     console.log(error.message);

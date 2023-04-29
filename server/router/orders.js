@@ -36,7 +36,7 @@ router.get("/get/:consumerId", checkToken, async (req, res) => {
     const consumer = await Consumer.findOne({ oneId: req.params.consumerId });
     if (
       consumer._id.toString() !== decodedConsumer._id &&
-      decodedConsumer.username !== "bookadmin"
+      decodedConsumer.username !== process.env.ADMIN_USERNAME
     ) {
       return res.json({
         status: "bad",
@@ -61,7 +61,7 @@ router.get("/getOne/:consumerId/:id", checkToken, async (req, res) => {
   const consumer = await Consumer.findOne({ oneId: req.params.consumerId });
   if (
     consumer._id.toString() !== decodedConsumer._id &&
-    decodedConsumer.username !== "bookadmin"
+    decodedConsumer.username !== process.env.ADMIN_USERNAME
   ) {
     return res.json({
       status: "bad",
@@ -108,7 +108,7 @@ router.put("/update/:id", checkToken, async (req, res) => {
     const consumer = await Consumer.findOne({ oneId: req.params.consumerId });
     if (
       consumer._id.toString() !== decodedConsumer._id &&
-      decodedConsumer.username !== "bookadmin"
+      decodedConsumer.username !== process.env.ADMIN_USERNAME
     ) {
       return res.json({
         status: "bad",
@@ -135,7 +135,7 @@ router.put("/:oneId/:status", checkToken, async (req, res) => {
   const order = await Order.findOne({ oneId: req.params.oneId });
   if (
     order.consumerId !== decodedConsumer.oneId &&
-    decodedConsumer.username !== "bookadmin"
+    decodedConsumer.username !== process.env.ADMIN_USERNAME
   ) {
     return res.json({
       status: "bad",
@@ -170,7 +170,7 @@ router.delete("/deleteOrders/:consumerId", checkToken, async (req, res) => {
     const consumer = await Consumer.findOne({ oneId: req.params.consumerId });
     if (
       consumer._id.toString() !== decodedConsumer._id &&
-      decodedConsumer.username !== "bookadmin"
+      decodedConsumer.username !== process.env.ADMIN_USERNAME
     ) {
       return res.json({
         status: "bad",
@@ -197,7 +197,7 @@ router.delete(
       const consumer = await Consumer.findOne({ oneId: req.params.consumerId });
       if (
         consumer._id.toString() !== decodedConsumer._id &&
-        decodedConsumer.username !== "bookadmin"
+        decodedConsumer.username !== process.env.ADMIN_USERNAME
       ) {
         return res.json({
           status: "bad",

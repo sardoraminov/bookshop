@@ -18,7 +18,7 @@ const checkToken = (req, res, next) => {
     });
   }
 
-  decoded.consumer.username === "bookadmin"
+  decoded.consumer.username === process.env.ADMIN_USERNAME
     ? (req.admin = decoded.consumer)
     : (req.consumer = decoded.consumer);
   next();
@@ -42,7 +42,7 @@ const checkAdmin = (req, res, next) => {
     });
   }
 
-  if (decoded.consumer.username !== "bookadmin") {
+  if (decoded.consumer.username !== process.env.ADMIN_USERNAME) {
     return res.json({
       msg: "Unauthorized",
       fulllMsg: "You don't have permission to access this resource",

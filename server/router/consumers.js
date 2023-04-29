@@ -39,7 +39,7 @@ router.put("/:id", checkToken, async (req, res) => {
     const consumer = await Consumer.findById(req.params.id);
     if (
       consumer._id.toString() !== decodedConsumer._id &&
-      decodedConsumer.username !== "bookadmin"
+      decodedConsumer.username !== process.env.ADMIN_USERNAME
     ) {
       return res.json({
         status: "bad",
@@ -69,7 +69,7 @@ router.delete("/:id", checkToken, async (req, res) => {
     const consumer = await Consumer.findById(req.params.id);
     if (
       consumer._id.toString() !== decodedConsumer._id &&
-      decodedConsumer.username !== "bookadmin"
+      decodedConsumer.username !== process.env.ADMIN_USERNAME
     ) {
       return res.json({
         status: "bad",
