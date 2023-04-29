@@ -24,7 +24,11 @@ let menuVisible = computed(() => {
     <aside
       class="menu-component border-r-2 p-4 h-screen w-auto max-h-screen overflow-y-scroll bg-white text-dark-primary"
     >
-      <router-link @click="$store.dispatch('playSong')" to="/explore" class="comp-title font-space text-3xl font-extrabold">
+      <router-link
+        @click="$store.dispatch('playSong')"
+        to="/explore"
+        class="comp-title font-space text-3xl font-extrabold"
+      >
         Menu <span class="mark text-yellow">.</span>
       </router-link>
       <div class="comp-parts space-y-4">
@@ -66,7 +70,7 @@ let menuVisible = computed(() => {
           $store.dispatch('playSong');
         }
       "
-      class="text-3xl font-bold text-black ml-2"
+      class="close-btn text-3xl font-bold text-black ml-2"
     >
       &times;
     </button>
@@ -74,9 +78,17 @@ let menuVisible = computed(() => {
 </template>
 
 <style scoped>
-  .menu {
-    z-index: 999999999999999;
+@media (max-width: 350px) {
+  .close-btn {
+    position: fixed;
+    right: 8px;
+    top: 8px;
+    z-index: 9999999999999999;
   }
+}
+.menu {
+  z-index: 999999999999999;
+}
 .menu-component {
   box-shadow: 11px 0px 92px -3px #d6d5d5bf;
   z-index: 999999999999999 !important;

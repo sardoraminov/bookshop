@@ -12,7 +12,7 @@ const handleClick = () => {
 </script>
 
 <template>
-  <nav class="navigation py-5 links flex flex-row items-center">
+  <nav class="navigation py-5 links flex flex-row items-center justify-between">
     <div class="nav-logo">
       <div class="open flex flex-row items-center">
         <button @click="handleClick">
@@ -23,10 +23,17 @@ const handleClick = () => {
         </p>
       </div>
     </div>
-    <div class="nav-links font-manr ml-10 font-medium space-x-4">
-      <router-link to="#!" class="link transition hover:text-yellow">Haqimizda</router-link>
-      <router-link to="#!" class="link transition hover:text-yellow">Bog'lanish</router-link>
-      <router-link to="#!" class="link transition hover:text-yellow">FAQ</router-link>
+    <div class="nav-search font-manr ml-10 flex items-center font-medium w-[70%] space-x-4 border rounded px-4 py-2">
+      <ion-icon class="text-gray-600" name="search-outline"></ion-icon>
+      <input type="text" placeholder="Izlash..." class="outline-none w-full">
     </div>
   </nav>
 </template>
+
+<style scoped>
+@media (max-width: 560px) {
+  .open p {
+    display: none;
+  }
+}
+</style>
